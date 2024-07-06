@@ -17,28 +17,33 @@ def convert_to_fahrenheit(celsius):
     return fahrenheit_conversion
 
 def main():
-
     while True:
         user_option = input("Select 'q' to quit program or 'c' to continue: ").strip().lower()
         if user_option == "q":
             break
 
         elif user_option == "c":
+            try:
+                temperature = float(input("Enter the temperature to convert: "))
+                unit_to_convert = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").strip().upper()
+                break
+            except ValueError:
+                print("Invalid temperature. Please enter a numeric value.")
+    
+    if unit_to_convert == "F":
+        converted_temperature = convert_to_celsius(temperature)
+        print(f"{temperature}°F is {converted_temperature}°C")
 
-            temperature = float(input("Enter the temperature to convert: "))
-            unit_to_convert = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").upper()
+    elif unit_to_convert == "C":
+        converted_temperature = convert_to_fahrenheit(temperature)
+        print(f"{temperature}°C is {converted_temperature}°F")
 
-            if unit_to_convert == "F":
-                converted_temperature = convert_to_celsius(temperature)
-                print(f"{temperature}°F is {converted_temperature}°C")
+    else: 
+        print("Error: Select the correct option from the menu")
 
-            elif unit_to_convert == "C":
-                converted_temperature = convert_to_fahrenheit(temperature)
-                print(f"{temperature}°C is {converted_temperature}°F")
+        
 
-            else: 
-                print("Error: Select the correct option from the menu")
-
+        
 
 if __name__ == "__main__":
     main()
